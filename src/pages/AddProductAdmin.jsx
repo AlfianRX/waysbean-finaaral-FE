@@ -5,9 +5,11 @@ import clip from './../assets/img/clip.png'
 import { Navbar } from "./../components";
 
 import kopi from './../assets/img/question.png'
+import { useNavigate } from 'react-router-dom';
 
 function AddProductAdmin() {
 
+  let navigate = useNavigate();
   const [preview, setPreview] = useState(null);
   const [previewName, setPreviewName] = useState("");
 
@@ -63,7 +65,7 @@ function AddProductAdmin() {
       console.log(response)
 
       alert('Produk berhasil ditambahkan!')
-
+      navigate("/")
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +78,7 @@ function AddProductAdmin() {
       <div className='row justify-content-between' style={{ marginTop: 120, width: '90%' }}>
       <div className='col-6'>
 
-        <h2 className='text-red mb-5'>Add Product</h2>
+        <h2 className='text-red mb-4'>Add Product</h2>
         <form onSubmit={(e) => handleOnSubmit.mutate(e)}>
           <input className="form-control input-red mb-4" type="text" name='title' onChange={handleChange} placeholder={`Name Product`} aria-label="default input example" />
           <input className="form-control input-red mb-4" type="number" name='stock' placeholder="Stock" onChange={handleChange} aria-label="default input example" />
@@ -94,7 +96,9 @@ function AddProductAdmin() {
           </div>
         </form>
       </div>
-      <img className='col-5' style={{ height: 500}} src={preview || kopi} alt="Add Product" />
+      <div className='col-5 mt-9' style={{marginTop:"60px"}} >
+        <img style={{ height: 300, width: 200}} src={preview || kopi} alt="Add Product" />
+      </div>
     </div >
 
     </div>
